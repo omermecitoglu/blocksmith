@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "name": "ts-next-bootstrap-fontawesome",
+  "version": "1.0.0",
+  "description": "Typescript Next.js Bootstrap FontAwesome Template",
+  "type": "module",
+  "scripts": {
+    "prebuild": "ts-unused-exports tsconfig.json --excludePathsFromReport='app;.config'",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.1",
+    "@fortawesome/free-brands-svg-icons": "^6.7.1",
+    "@fortawesome/free-solid-svg-icons": "^6.7.1",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "bootstrap": "^5.3.3",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.6",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^15.1.0",
+    "@omer-x/eslint-config": "^2.1.2",
+    "@types/node": "22.10.2",
+    "@types/react": "19.0.1",
+    "eslint": "^9.16.0",
+    "sass": "^1.83.0",
+    "ts-unused-exports": "^11.0.1",
+    "typescript": "5.7.2"
+  }
+}
