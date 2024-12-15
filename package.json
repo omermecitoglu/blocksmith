@@ -1,11 +1,10 @@
 {
   "private": true,
-  "name": "ts-next-bootstrap-fontawesome",
+  "name": "@omer-x/blocksmith",
   "version": "1.0.0",
-  "description": "Typescript Next.js Bootstrap FontAwesome Template",
+  "description": "GitHub webhook-powered application that automatically identifies and labels issues as \"blocked\" based on their descriptions.",
   "type": "module",
   "scripts": {
-    "prebuild": "ts-unused-exports tsconfig.json --excludePathsFromReport='app;.config'",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "dev": "next dev",
@@ -28,9 +27,8 @@
     "@omer-x/eslint-config": "^2.1.2",
     "@types/node": "22.10.2",
     "@types/react": "19.0.1",
-    "eslint": "^9.16.0",
+    "eslint": "^9.17.0",
     "sass": "^1.83.0",
-    "ts-unused-exports": "^11.0.1",
     "typescript": "5.7.2"
   }
 }
