@@ -27,7 +27,7 @@ type WebhookEvent = {
 export async function POST(request: Request) {
   const buffer = await request.arrayBuffer();
   const isSafe = verifySignature(request, buffer, "blocksmith");
-  if (!isSafe) {
+  if (!isSafe && process.env.NODE_ENV === "production") {
     return new Response("Unauthorized", { status: 401 });
   }
 
