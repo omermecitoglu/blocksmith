@@ -1,5 +1,4 @@
 import crypto from "node:crypto";
-import { RequestError } from "@octokit/request-error";
 import { Octokit } from "@octokit/rest";
 
 export function verifySignature(req: Request, buffer: ArrayBuffer, secret: string) {
@@ -15,7 +14,7 @@ async function ensureLabelExists(owner: string, repo: string, label: string) {
   try {
     await octokit.issues.getLabel({ owner, repo, name: label });
   } catch (error) {
-    if (error instanceof RequestError && error.status === 404) {
+    if (error instanceof Error && "status" in error && error.status === 404) {
       await octokit.issues.createLabel({ owner, repo, name: label, color: "FF0000", description: "created by Blocksmith" });
     }
     throw error;
