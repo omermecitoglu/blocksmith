@@ -4,6 +4,7 @@ export default [
   ...omer,
   {
     rules: {
+      "react/jsx-no-literals": "off",
     },
   },
   {
