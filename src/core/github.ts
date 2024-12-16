@@ -1,7 +1,6 @@
 import crypto from "node:crypto";
 import { RequestError } from "@octokit/request-error";
 import { Octokit } from "@octokit/rest";
-import env from "./env";
 
 export function verifySignature(req: Request, buffer: ArrayBuffer, secret: string) {
   const sha1 = crypto.createHmac("sha1", secret).update(Buffer.from(buffer)).digest("hex");
@@ -9,7 +8,7 @@ export function verifySignature(req: Request, buffer: ArrayBuffer, secret: strin
 }
 
 const octokit = new Octokit({
-  auth: env.GITHUB_PAT,
+  auth: process.env.GITHUB_PAT,
 });
 
 async function ensureLabelExists(owner: string, repo: string, label: string) {
