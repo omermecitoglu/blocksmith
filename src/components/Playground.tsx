@@ -11,9 +11,13 @@ const Playground = () => {
     setSubmitting(true);
     await fetch("/webhook", {
       method: "POST",
+      headers: {
+        "X-GitHub-Event": "issues",
+      },
       body: inputValue,
     });
     setSubmitting(false);
+    alert("done");
   };
 
   return (
