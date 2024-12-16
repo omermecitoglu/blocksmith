@@ -1,0 +1,10 @@
+.git
+.gitignore
+.github
+/.next/
+/node_modules
+.env*.local
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
