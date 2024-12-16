@@ -1,11 +1,13 @@
-import { verifySignature } from "~/core/github";
+import convertMarkdownToJSON from "@omer-x/md-to-json";
+import { addLabelToIssue, removeLabelFromIssue, verifySignature } from "~/core/github";
 
 type WebhookEvent = {
   action: "edited",
   issue: {
+    number: number,
     title: string,
     state: "open",
-    labels: unknown[],
+    labels: { name: string }[],
     body: string,
   },
   changes: {
@@ -16,6 +18,9 @@ type WebhookEvent = {
   repository: {
     name: string,
     full_name: string,
+    owner: {
+      login: string,
+    },
   },
 };
 
@@ -25,8 +30,29 @@ export async function POST(request: Request) {
   if (!isSafe) {
     return new Response("Unauthorized", { status: 401 });
   }
+
   const event = JSON.parse(Buffer.from(buffer).toString()) as WebhookEvent;
-  console.log(event);
+  const result = convertMarkdownToJSON(event.issue.body);
+  if (result.success) {
+    const blockers = result.sections.find(s => s.title === "Blockers");
+    if (blockers) {
+      const blockersList = blockers.content.find(item => Array.isArray(item));
+      if (blockersList) {
+        const isAlreadyBlocked = !!event.issue.labels.find(label => label.name === "blocked");
+        const shouldBeBlocked = blockersList.some(item => item.startsWith("[ ]"));
+        if (isAlreadyBlocked !== shouldBeBlocked) {
+          const owner = event.repository.owner.login;
+          const repo = event.repository.name;
+          const issueNo = event.issue.number;
+          if (shouldBeBlocked) {
+            await addLabelToIssue(owner, repo, issueNo, ["blocked"]);
+          } else {
+            await removeLabelFromIssue(owner, repo, issueNo, "blocked");
+          }
+        }
+      }
+    }
+  }
 
   return new Response("Webhook received", { status: 200 });
 }
