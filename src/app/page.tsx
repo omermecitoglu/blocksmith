@@ -1,12 +1,12 @@
-import { faHandPeace } from "@fortawesome/free-solid-svg-icons/faHandPeace";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 const Page = () => (
   <h1>
-    {`${"Hello World"}`}
+    Blocksmith is running
     {" "}
-    <FontAwesomeIcon icon={faHandPeace} />
+    <FontAwesomeIcon icon={faThumbsUp} />
   </h1>
 );
 
