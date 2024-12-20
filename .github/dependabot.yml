@@ -6,6 +6,5 @@ updates:
       interval: "daily"
     assignees:
       - "omermecitoglu"
-    ignore:
-      - dependency-name: "eslint"
-        versions: ["9.x"]
+    allow:
+      - dependency-name: "@omer-x/*"
