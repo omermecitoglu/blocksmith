@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
+ENV STANDALONE_OUTPUT_MODE=yes
 RUN npm run build
 # Runtime Stage
 FROM node:lts-alpine
