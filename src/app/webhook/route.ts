@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     }
     case "issues": {
       const event = JSON.parse(Buffer.from(buffer).toString()) as WebhookEvent;
-      const result = convertMarkdownToJSON(event.issue.body);
+      const result = convertMarkdownToJSON(event.issue.body + "\n");
       if (result.success) {
         const blockers = result.sections.find(s => s.title === "Blockers");
         if (blockers) {
@@ -60,6 +60,9 @@ export async function POST(request: Request) {
             }
           }
         }
+      } else {
+        // eslint-disable-next-line no-console
+        console.log("md-to-json error:", result.errorCode, result.errorCause);
       }
       break;
     }
