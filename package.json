@@ -5,8 +5,8 @@
   "description": "GitHub webhook-powered application that automatically identifies and labels issues as \"blocked\" based on their descriptions.",
   "type": "module",
   "scripts": {
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "eslint --flag unstable_native_nodejs_ts_config",
+    "lint:fix": "eslint --fix --flag unstable_native_nodejs_ts_config",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
